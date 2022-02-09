@@ -2,11 +2,25 @@
 <html lang="en">
 <head>
     {% load static %}
-    <link rel="stylesheet" href={% static '/css/style.css' %}>>
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
     <title>{% block title %}Застрахуй братуху{% endblock %}</title>
 </head>
 
 <body >
+    <header>
+        <div class="header-main_page_button header-item">
+            <a href={% url 'index' %}>Главная</a>
+        </div>
+        <div class="header-log_button header-item">
+        {% csrf_token %}
+        {% if request.user.is_authenticated %}
+            <p>Вы вошли как <snap class="bold"> {{ request.user.username }} </snap> </p>
+            <p><a href="{% url 'logout' %}">Выйти из аккаунта</a></p>
+        {% else %}
+            <a href="{% url 'login' %}">Войти в свой аккаунт</a>
+        {% endif %}
+        </div>
+    </header>
     <div class="page-content">
         {% block content %}{% endblock %}
     </div>

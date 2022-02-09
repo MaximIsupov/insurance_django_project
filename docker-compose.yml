@@ -27,4 +27,4 @@ services:
       - migration
       - db
 volumes: 
-     pgdata:
+   pgdata:
