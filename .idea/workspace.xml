@@ -20,33 +20,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6376362-2912-4b0a-9479-794493fe50d1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/insurance_django_project.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/db.sqlite3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/insurance_django_project/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/templates/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/var.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code/insurance_app/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code/insurance_app/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code/templates/account/register.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code/templates/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code/templates/registration/logged_out.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/insurance_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/insurance_app/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/insurance_django_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/insurance_django_project/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/insurance_django_project/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/insurance_django_project/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/code/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/insurance_django_project/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/insurance" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/insurance_django_project/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/insurance_django_project/asgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/insurance_django_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/insurance_django_project/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/insurance_django_project/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/insurance_django_project/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/insurance_django_project/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/insurance_django_project/wsgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/manage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/var.env" beforeDir="false" afterPath="$PROJECT_DIR$/var.env" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -57,10 +57,16 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/code/manage.py" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\insurance_django_project\code\templates\account" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
@@ -96,7 +102,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644066983902</updated>
-      <workItem from="1644066989535" duration="2189000" />
+      <workItem from="1644066989535" duration="3179000" />
+      <workItem from="1644392290578" duration="7483000" />
     </task>
     <servers />
   </component>
@@ -113,6 +120,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="181" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1644067381966">
