@@ -14,10 +14,11 @@
         <div class="header-log_button header-item">
         {% csrf_token %}
         {% if request.user.is_authenticated %}
-            <p>Вы вошли как <snap class="bold"> {{ request.user.username }} </snap> </p>
+            <p>Вы вошли как <a href="{% url 'user_page' %}" class="bold"> {{ request.user.username }} </a> </p>
             <p><a href="{% url 'logout' %}">Выйти из аккаунта</a></p>
         {% else %}
-            <a href="{% url 'login' %}">Войти в свой аккаунт</a>
+            <p><a href="{% url 'login' %}">Войти в свой аккаунт</a></p>
+            <p><a href="{% url 'register' %}">Зарегистрироваться</a></p>
         {% endif %}
         </div>
     </header>

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Добавить новую компанию{% endblock %}
+
+{% block content %}
+    <h1>Компании, зарегистрированные вами:</h1>
+    {% for company in companies %}
+        <p>{{ company.name }} <br> {{ company.description }}</p>
+        Список услуг компании: <br>
+        {% for product in products %}
+            {% if product.company_id == company %}
+                <p>- {{ product.name }} <br>
+                    Период действия услуги: {{ product.period }} г.<br>
+                    Процентная ставка: {{ product.percentage }}%</p>
+            {% endif %}
+        {% endfor %}
+        <a href="{% url 'add_product' company.id %}">Добавить новую услугу компании</a>
+    {% endfor %}
+{% endblock %}
