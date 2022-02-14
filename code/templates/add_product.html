@@ -5,23 +5,31 @@
 {% block content %}
     <form method="post">
         {% csrf_token %}
-        <label for="product_name">Укажите название услуги</label>
-        <input type="text" id="product_name" name="product_name"><br>
+        <label for="product_name">Укажите название услуги</label><br>
+        <input type="text" id="product_name" name="product_name" value="{{ product.name }}"><br>
         Выберите категорию: <br>
         <select name="category_id">
         {% for category in categories %}
-            <option value={{ category.id }}>{{ category.name }}</option>
+            <option {% if product.category_id.id == category.id %}
+                        selected="selected"
+                    {% endif %}
+                    value={{ category.id }}>{{ category.name }}</option>
         {% endfor %}
         </select>
-        <label for="percentage">Укажите процентную ставку(в процентах)</label>
-        <input type="number" id="percentage" name="percentage"><br>
+             <br><label for="percentage">Укажите процентную ставку(в процентах)</label><br>
+        <input type="tel" id="percentage" name="percentage" value="{{ product.percentage }}"><br>
         <label for="period">Укажите период страхования</label><br>
         <select name="period">
-            <option value="0.5">6 месяцев</option>
-            <option value="1">1 год</option>
-            <option value="3">3 года</option>
-            <option value="5">5 лет</option>
+            <option {% if product.period == 0.5 %}selected="selected"{% endif %} value="0.5">6 месяцев</option>
+            <option {% if product.period == 1 %}selected="selected"{% endif %} value="1">1 год</option>
+            <option {% if product.period == 3 %}selected="selected"{% endif %} value="3">3 года</option>
+            <option {% if product.period == 5 %}selected="selected"{% endif %} value="5">5 лет</option>
         </select>
+    <br>
         <button class="button" type="submit">Добавить</button>
     </form>
+    <script>
+      input_percentage_field = document.getElementById('percentage')
+      input_percentage_field.valueOf().defaultValue = input_percentage_field.valueOf().defaultValue.replace(",", ".")
+    </script>
 {% endblock %}

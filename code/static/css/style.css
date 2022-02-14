@@ -6,6 +6,9 @@ header{
     font-size: 22px;
     height:60px;
 }
+body{
+    font-size:18px;
+}
 header a{
     text-decoration: none;
     color: black;
@@ -29,6 +32,19 @@ header a{
     margin: auto;
     margin-top:100px;
 }
-form label, form input{
+form label, form input, form select{
 margin-bottom:20px;
+}
+.company_title{
+    font-size: 25px;
+}
+.product-description{
+    margin-left:30px;
+}
+a.company_title{
+    text-decoration: none;
+    color:black;
+}
+.product_title{
+    font-size:22px;
 }

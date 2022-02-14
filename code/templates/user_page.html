@@ -5,15 +5,19 @@
 {% block content %}
     <h1>Компании, зарегистрированные вами:</h1>
     {% for company in companies %}
-        <p>{{ company.name }} <br> {{ company.description }}</p>
+        <p><snap class="bold company_title">{{ company.name }}</snap> <br> {{ company.description }}</p>
         Список услуг компании: <br>
         {% for product in products %}
             {% if product.company_id == company %}
-                <p>- {{ product.name }} <br>
+                <p class="product-description"><snap class="bold company_title">{{ product.name }} </snap><br>
                     Период действия услуги: {{ product.period }} г.<br>
-                    Процентная ставка: {{ product.percentage }}%</p>
+                    Процентная ставка: {{ product.percentage }}%<br>
+                    Категория: {{ product.category_id.name }} <br>
+                <a href={% url 'edit_product' product.id %}>Редактировать</a></p>
             {% endif %}
         {% endfor %}
         <a href="{% url 'add_product' company.id %}">Добавить новую услугу компании</a>
     {% endfor %}
+    <hr>
+    <a href="{% url 'add_company' %}">Зарегистрировать новую компанию</a>
 {% endblock %}

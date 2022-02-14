@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+ <h1>Список компаний, зарегистрированных в нашей системе:</h1>
+    {% for company in companies %}
+        <p><a href="{% url 'company_page' company.id %}" class="bold company_title">{{ company.name }}</a><br>{{ company.description }}</p>
+    {% endfor %}
+{% endblock %}

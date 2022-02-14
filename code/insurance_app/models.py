@@ -1,5 +1,4 @@
 from django.db import models
-
 # Create your models here.
 
 
@@ -26,6 +25,6 @@ class Order(models.Model):
     customer_first_name = models.CharField(max_length=50)
     customer_middle_name = models.CharField(max_length=50)
     customer_last_name = models.CharField(max_length=50)
-    customer_phone = models.IntegerField(default=88888888888)
+    customer_phone = models.BigIntegerField(default=88888888888)
     customer_mail = models.CharField(max_length=100)
 

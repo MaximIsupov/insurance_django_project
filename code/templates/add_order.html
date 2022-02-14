@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Откликнуться{% endblock %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <label for="customer_first_name">Ваше имя:</label><br>
+        <input type="text" id="customer_first_name" name="customer_first_name" placeholder="Имя"><br>
+        <label for="customer_middle_name">Ваша фамилия:</label><br>
+        <input type="text" id="customer_middle_name" name="customer_middle_name" placeholder="Фамилия"><br>
+        <label for="customer_last_name">Ваше отчество</label><br>
+        <input type="text" id="customer_last_name" name="customer_last_name" placeholder="Отчество"><br>
+        <label for="customer_phone">Введите ваш номер телефона:</label><br>
+        <input type="tel" id="customer_phone" name="customer_phone"><br>
+        <label for="customer_mail">Введите вашу электронную почту:</label>
+        <input type="email" id="customer_mail" name="customer_mail"><br>
+        <button class="button" type="submit">Готово</button>
+    </form>
+{% endblock %}

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
-from .models import Company, Category, Product
+from .models import Company, Category, Product, Order
 
 
 class SignUpView(generic.CreateView):
@@ -14,7 +14,11 @@ class SignUpView(generic.CreateView):
 
 def add_company(request):
     if request.method == 'GET':
-        return render(request, 'add_company.html', {})
+        companies = Company.objects.all()[:5]
+        products = Product.objects.all()[:5]
+        context = {'companies': companies,
+                   'products': products}
+        return render(request, 'add_company.html', context)
     else:
         company_name = request.POST['company_name']
         company_description = request.POST['company_description']
@@ -42,7 +46,35 @@ def add_product(request, company_id):
                           percentage=percentage,
                           name=name)
         product.save()
-        return render(request, 'user_page.html', {})
+        companies = Company.objects.filter(user_id=request.user.id)
+        products = Product.objects.all()
+        context = {'companies': companies,
+                   'products': products, }
+        return render(request, 'user_page.html', context)
+
+
+def edit_product(request, product_id):
+    if request.method == 'GET':
+        categories = Category.objects.all()
+        product = Product.objects.get(id=product_id)
+        return render(request, 'add_product.html', {'categories': categories,
+                                                    'product': product})
+    else:
+        product = Product.objects.get(id=product_id)
+        category = Category.objects.get(id=request.POST['category_id'])
+        period = request.POST['period']
+        percentage = request.POST['percentage']
+        name = request.POST['product_name']
+        product.category_id = category
+        product.period = period
+        product.percentage = percentage
+        product.name = name
+        product.save()
+        companies = Company.objects.filter(user_id=request.user.id)
+        products = Product.objects.all()
+        context = {'companies': companies,
+                   'products': products, }
+        return render(request, 'user_page.html', context)
 
 
 def user_page(request):
@@ -54,6 +86,44 @@ def user_page(request):
 
 
 def index(request):
-    return render(request, 'index.html', {})
+    companies = Company.objects.all()[:5]
+    products = Product.objects.all()[:5]
+    context = {'companies': companies,
+               'products': products}
+    return render(request, 'index.html', context)
 
 
+def companies_page(request):
+    companies = Company.objects.all()
+    return render(request, 'companies.html', {'companies': companies})
+
+
+def company_page(request, company_id):
+    company = Company.objects.get(id=company_id)
+    products = Product.objects.filter(company_id=company)
+    return render(request, 'company.html', {'products': products,
+                                            'company': company})
+
+
+def add_order(request, product_id):
+    if request.method == 'GET':
+        return render(request, 'add_order.html', {})
+    else:
+        product = Product.objects.get(id=product_id)
+        customer_first_name = request.POST['customer_first_name']
+        customer_middle_name = request.POST['customer_middle_name']
+        customer_last_name = request.POST['customer_last_name']
+        customer_phone = request.POST['customer_phone']
+        customer_mail = request.POST['customer_mail']
+        order = Order(customer_mail=customer_mail,
+                      customer_first_name=customer_first_name,
+                      customer_middle_name=customer_middle_name,
+                      customer_last_name=customer_last_name,
+                      customer_phone=int(customer_phone),
+                      product_id=product)
+        order.save()
+        companies = Company.objects.all()[:5]
+        products = Product.objects.all()[:5]
+        context = {'companies': companies,
+                   'products': products, }
+        return render(request, 'index.html', context)
