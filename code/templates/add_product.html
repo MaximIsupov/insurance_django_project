@@ -3,6 +3,7 @@
 {% block title %}Добавить новую компанию{% endblock %}
 
 {% block content %}
+    <div class="page-block">
     <form method="post">
         {% csrf_token %}
         <label for="product_name">Укажите название услуги</label><br>
@@ -32,4 +33,5 @@
       input_percentage_field = document.getElementById('percentage')
       input_percentage_field.valueOf().defaultValue = input_percentage_field.valueOf().defaultValue.replace(",", ".")
     </script>
+    </div>
 {% endblock %}

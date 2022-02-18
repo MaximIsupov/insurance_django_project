@@ -3,15 +3,18 @@ header{
     max-width: 70%;
     margin: auto;
     justify-content: space-between;
-    font-size: 22px;
+    font-size: 28px;
     height:60px;
+    color:#707070;
 }
 body{
+    background-color:#f0f0f0;
     font-size:18px;
+    font-family: monospace;
 }
 header a{
     text-decoration: none;
-    color: black;
+    color: #ff5733;
     font-weight: bold;
 }
 .bold{
@@ -43,8 +46,43 @@ margin-bottom:20px;
 }
 a.company_title{
     text-decoration: none;
-    color:black;
+    color:#ff5733;
 }
 .product_title{
     font-size:22px;
+}
+.page-block{
+    background-color: white;
+    border-radius: 30px;
+    padding:30px;
+}
+.page-block h1{
+    margin-top:0px;
+}
+a{
+    text-decoration: none;
+    color:white;
+}
+.button{
+    margin-top:30px;
+    margin-bottom:30px;
+    width:225px;
+    text-align: center;
+    background-color: #ff5733;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 35px;
+    padding:15px;
+}
+button.button{
+    border: 0px;
+    font-weight: bold;
+    font-size: 18px;
+}
+.button_secondary{
+    font-size:15px;
+    width:175px;
+    background-color:#707070;
 }

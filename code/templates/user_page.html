@@ -3,21 +3,25 @@
 {% block title %}Добавить новую компанию{% endblock %}
 
 {% block content %}
+    <div class="page-block">
     <h1>Компании, зарегистрированные вами:</h1>
     {% for company in companies %}
         <p><snap class="bold company_title">{{ company.name }}</snap> <br> {{ company.description }}</p>
-        Список услуг компании: <br>
+        <div >Список услуг компании: </div> <br>
+        <div class="product-description">
         {% for product in products %}
             {% if product.company_id == company %}
-                <p class="product-description"><snap class="bold company_title">{{ product.name }} </snap><br>
+                <p><snap class="bold company_title">{{ product.name }} </snap><br>
                     Период действия услуги: {{ product.period }} г.<br>
                     Процентная ставка: {{ product.percentage }}%<br>
                     Категория: {{ product.category_id.name }} <br>
-                <a href={% url 'edit_product' product.id %}>Редактировать</a></p>
+                    <a href={% url 'edit_product' product.id %}><div class="button button_secondary">Редактировать</div></a></p>
             {% endif %}
         {% endfor %}
-        <a href="{% url 'add_product' company.id %}">Добавить новую услугу компании</a>
+        </div>
+        <a href="{% url 'add_product' company.id %}"><div class="button">Добавить новую услугу компании</div></a>
     {% endfor %}
     <hr>
-    <a href="{% url 'add_company' %}">Зарегистрировать новую компанию</a>
+        <a href="{% url 'add_company' %}"><div class="button">Зарегистрировать новую компанию</div></a>
+    </div>
 {% endblock %}

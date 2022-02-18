@@ -1,6 +1,14 @@
 version: "3.8"
    
 services:
+  es:
+    image: elasticsearch:7.8.1
+    environment:
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+    volumes:
+    - esdata:/usr/share/elasticsearch/data
   db:
     image: postgres
     env_file:
@@ -9,14 +17,14 @@ services:
       - pgdata:/var/lib/postgresql/data
   migration:
     build: .
-    command: python /code/manage.py migrate 
+    command: python manage.py migrate 
     volumes:
       - ./code:/code
     depends_on:
       - db
   web:
     build: .
-    command: python /code/manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./code:/code
     ports:
@@ -26,5 +34,7 @@ services:
     depends_on:
       - migration
       - db
+      - es
 volumes: 
    pgdata:
+   esdata:

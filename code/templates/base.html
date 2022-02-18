@@ -11,7 +11,11 @@
         <div class="header-main_page_button header-item">
             <a href={% url 'index' %}>Главная</a>
         </div>
-        <div class="header-log_button header-item">
+        <div class="header-item">
+            <input type="text" name='search_keyword' placeholder='Поиск'/>
+            <button type="submit" class="button button_secondary">Поиск</button>
+        </div>
+    <div class="header-log_button header-item">
         {% csrf_token %}
         {% if request.user.is_authenticated %}
             <p>Вы вошли как <a href="{% url 'user_page' %}" class="bold"> {{ request.user.username }} </a> </p>

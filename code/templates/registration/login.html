@@ -2,6 +2,8 @@
 
 {% block content %}
 
+    <div class="page-block">
+
 {% if form.errors %}
   <p>Что-то не получается. Попробуйте снова.</p>
 {% endif %}
@@ -30,9 +32,9 @@
 </tr>
 </table>
 
-<input type="submit" value="login" />
+    <button class="button" type="submit" value="login" >Войти</button>
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
-
+    </div>
 
 {% endblock %}

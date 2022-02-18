@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <div class="page-block">
  <h1>Последние компании, зарегистрированные в нашей системе:</h1>
     {% for company in companies %}
         <p><a href="{% url 'company_page' company.id %}" class="bold company_title">{{ company.name }}</a><br>{{ company.description }}</p>
     {% endfor %}
-    <a href={% url 'companies_page' %}>Все компании</a>
+        <a href={% url 'companies_page' %}><div class="button">Все компании</div></a>
+    </div>
     <hr>
+    <div class="page-block">
     <h1>Последние услуги, зарегистрированные компаниями</h1>
     {% for product in products %}
         <p><a href="{% url 'company_page' product.company_id.id %}" class="bold company_title">{{ product.company_id.name }}</a><br>
@@ -15,11 +18,12 @@
             Процентная ставка: {{ product.percentage }}%<br>
         Категория: {{ product.category_id.name }} <br></p>
         {% if not request.user.is_authenticated %}
-            <a href={% url 'add_order' product.id %}>Откликнуться</a>
+            <a href={% url 'add_order' product.id %}><div class="button button_secondary">Откликнуться</div></a>
         {% endif %}
         {% if request.user.is_authenticated and request.user.id == company.user_id %}
-            <a href={% url 'edit_product' product.id %}>Редактировать</a>
+            <a href={% url 'edit_product' product.id %}><div class="button button_secondary">Редактировать</div></a>
         {% endif %}
     {% endfor %}
-    <a href="#">Все услуги компаний</a>
+        <a href="#"><div class="button">Все услуги компаний</div></a>
+    </div>
 {% endblock %}

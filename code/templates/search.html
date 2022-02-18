@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="page-block">
+ <h1>Список продуктов, удовлетворяющих вашему запросу: {{ str }}</h1>
+    {% for product in qs %}
+        <p><snap class="bold company_title">{{ product.name }} </snap><br>
+                    Период действия услуги: {{ product.period }} г.<br>
+                    Процентная ставка: {{ product.percentage }}%<br>
+                    Категория: {{ product.category_id.name }} <br>
+    {% endfor %}
+    </div>
+{% endblock %}

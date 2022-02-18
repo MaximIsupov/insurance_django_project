@@ -3,10 +3,12 @@
 {% block title %}Зарегистрироваться{% endblock %}
 
 {% block content %}
+    <div class="page-block">
     <p>Заполните форму ниже:</p>
     <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
         <button class="button" type="submit">Зарегистрироваться</button>
     </form>
+    </div>
 {% endblock %}

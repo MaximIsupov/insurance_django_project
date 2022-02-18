@@ -37,8 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'insurance_app.apps.InsuranceAppConfig'
+    'insurance_app.apps.InsuranceAppConfig',
+    'django_elasticsearch_dsl',
+    'rest_framework',
 ]
+
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': os.getenv("ELASTICSEARCH_DSL_HOSTS", 'es:9200')
+    },
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

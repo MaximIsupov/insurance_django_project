@@ -1,7 +1,15 @@
+import abc
+
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
+from django.http import HttpResponse
+from rest_framework.pagination import LimitOffsetPagination
+from rest_framework.views import APIView
+from .documents import ProductDocument
+from elasticsearch_dsl import Q
+
 from .models import Company, Category, Product, Order
 
 
@@ -127,3 +135,16 @@ def add_order(request, product_id):
         context = {'companies': companies,
                    'products': products, }
         return render(request, 'index.html', context)
+
+
+def products_search(request):
+    document_class = ProductDocument
+    search_keyword = request.POST('search_keyword')
+    s = ProductDocument.search().filter("multi_match",
+                                        query=search_keyword,
+                                        fields=[
+                                            'name',
+                                            'company_id'
+                                        ])
+    return render(request, 'search.html', {'qs': s,
+                                           'str': search_keyword})
