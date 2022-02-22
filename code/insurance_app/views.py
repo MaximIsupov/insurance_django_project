@@ -138,13 +138,41 @@ def add_order(request, product_id):
 
 
 def products_search(request):
-    document_class = ProductDocument
-    search_keyword = request.POST('search_keyword')
-    s = ProductDocument.search().filter("multi_match",
-                                        query=search_keyword,
-                                        fields=[
-                                            'name',
-                                            'company_id'
-                                        ])
+    search_keyword = request.GET['search_keyword']
+    category_name = request.GET.get('category_name', '')
+    max_percentage = request.GET.get('percentage', 100)
+    period_value = request.GET.get('period', '0')
+    current_values = {'keyword': search_keyword,
+                      'percentage': max_percentage,
+                      'period': period_value}
+    query_name = Q("multi_match",
+                   query=search_keyword,
+                   fields=[
+                       'name',
+                       'company_id.name'
+                   ])
+    query_category = Q("multi_match",
+                       query=category_name,
+                       fields=[
+                           'category_id.name'
+                       ])
+    query_percentage = Q('range',
+                         percentage={
+                             'gte': 0,
+                             'lte': max_percentage,
+                         })
+    query_period = Q('match',
+                     period=period_value)
+    s = ProductDocument.search()
+    s = s.filter(query_name)
+    if category_name != '':
+        s = s.filter(query_category)
+        current_values['category'] = category_name
+    s = s.filter(query_percentage)
+    if period_value != '0':
+        s = s.filter(query_period)
+    categories = Category.objects.all()
     return render(request, 'search.html', {'qs': s,
-                                           'str': search_keyword})
+                                           'values': current_values,
+                                           'categories': categories,
+                                           })

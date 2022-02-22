@@ -17,6 +17,12 @@ header a{
     color: #ff5733;
     font-weight: bold;
 }
+header input{
+    width:200px;
+    padding:5px;
+    font-size:15px;
+    margin-top:25px;
+}
 .bold{
     font-weight: bold;
 }
@@ -85,4 +91,16 @@ button.button{
     font-size:15px;
     width:175px;
     background-color:#707070;
+}
+#filter_label{
+    color:#ff5733;
+}
+.filter{
+    display: none;
+}
+.filter input, .filter select{
+    width:200px;
+    padding: 5px;
+    font-size: 15px;
+    margin-top:10px;
 }

@@ -12,8 +12,9 @@
             <a href={% url 'index' %}>Главная</a>
         </div>
         <div class="header-item">
-            <input type="text" name='search_keyword' placeholder='Поиск'/>
-            <button type="submit" class="button button_secondary">Поиск</button>
+            <form method="get" action={% url 'products_search' %}>
+                <input type="text" name="search_keyword" placeholder="Введите что-то для поиска"/>
+            </form>
         </div>
     <div class="header-log_button header-item">
         {% csrf_token %}

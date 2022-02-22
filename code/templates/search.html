@@ -2,7 +2,37 @@
 
 {% block content %}
     <div class="page-block">
- <h1>Список продуктов, удовлетворяющих вашему запросу: {{ str }}</h1>
+    <h3 id="filter_label" onclick="show_filter()">Открыть дополнительные настройки поиска</h3>
+    <div class="filter" id="filter">
+    <form method="get" action={% url 'products_search' %}>
+        <label for="category_input">Выберите категорию продукта:</label><br>
+        <select name="category_name" id="category_input">
+        {% for category in categories %}
+            <option {% if values.category == category.name %}
+                        selected="selected"
+                    {% endif %}
+                    value={{ category.name }}>{{ category.name }}</option>
+        {% endfor %}
+        </select><br>
+        <label for="filter_keyword">Здесь вы можете изменить ваше поисковое слово:</label><br>
+        <input type="text" name="search_keyword" id="filter_keyword" value={{ values.keyword }}><br>
+        <label for="range">Выберите максимальное значение процентной ставки:</label><br>
+        <label for="range" id="range_label">0</label><br>
+        <input type="range" id="range" name='percentage' min="0" max="100" step="1" value='{{ values.percentage }}'/><br>
+        <label for="filter_period">Выберите временной период действия услуги:</label><br>
+        <select name="period" id="filter_period">
+            <option {% if values.period == '0.5' %}selected="selected"{% endif %} value="0.5">6 месяцев</option>
+            <option {% if values.period == '1' %}selected="selected"{% endif %} value="1">1 год</option>
+            <option {% if values.period == '3' %}selected="selected"{% endif %} value="3">3 года</option>
+            <option {% if values.period == '5' %}selected="selected"{% endif %} value="5">5 лет</option>
+        </select>
+        <button class="button button_secondary">Поиск</button>
+    </form>
+    </div>
+    </div>
+        <hr>
+    <div class="page-block">
+ <h1>Список продуктов, удовлетворяющих вашему запросу: {{ values.keyword }}</h1>
     {% for product in qs %}
         <p><snap class="bold company_title">{{ product.name }} </snap><br>
                     Период действия услуги: {{ product.period }} г.<br>
@@ -10,4 +40,29 @@
                     Категория: {{ product.category_id.name }} <br>
     {% endfor %}
     </div>
+    <hr>
+    <script>
+        range_element = document.getElementById('range');
+        range_label = document.getElementById('range_label');
+        filter_block = document.getElementById('filter');
+        range_label.innerText = range_element.value;
+        range_element.onpointermove = () => {
+            range_label.innerText = range_element.value;
+        }
+        range_element.onchange = () => {
+            range_label.innerText = range_element.value;
+        }
+        function show_filter(){
+            if (filter_block.style.display !== 'block') {
+                filter_block.style.display = 'block';
+                filter_block.style.height = 'auto';
+                document.getElementById('filter_label').innerText = 'Закрыть дополнительные настройки поиска';
+            }
+            else {
+                filter_block.style.display = 'none';
+                filter_block.style.height = '0px';
+                document.getElementById('filter_label').innerText = 'Открыть дополнительные настройки поиска';
+            }
+        }
+    </script>
 {% endblock %}
