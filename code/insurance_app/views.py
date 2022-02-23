@@ -2,14 +2,12 @@ import abc
 
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.views import generic
-from django.http import HttpResponse
-from rest_framework.pagination import LimitOffsetPagination
-from rest_framework.views import APIView
 from .documents import ProductDocument
 from elasticsearch_dsl import Q
-
+from insurance_app.tasks import send_email_task
 from .models import Company, Category, Product, Order
 
 
@@ -103,6 +101,7 @@ def index(request):
 
 def companies_page(request):
     companies = Company.objects.all()
+
     return render(request, 'companies.html', {'companies': companies})
 
 
@@ -134,6 +133,9 @@ def add_order(request, product_id):
         products = Product.objects.all()[:5]
         context = {'companies': companies,
                    'products': products, }
+        user_id = product.company_id.user_id
+        to_email = User.objects.get(id=user_id).email
+        send_email_task(order, to_email)
         return render(request, 'index.html', context)
 
 

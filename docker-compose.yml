@@ -35,6 +35,29 @@ services:
       - migration
       - db
       - es
+      - rabbitmq
+  rabbitmq:
+    image: rabbitmq
+    container_name: rabbitmq
+    env_file:
+      - var.env
+    ports:
+        - "5672:5672"
+        - "15672:15672"
+  celery:
+    build: .
+    command: celery -A insurance_django_project worker -l info -B -E --loglevel=debug --concurrency=4
+    volumes:
+      - ./code:/code
+    depends_on:
+      - rabbitmq
+  celery-beat:
+    build: .
+    command: celery -A insurance_django_project beat -l info 
+    volumes:
+      - ./code:/code
+    depends_on:
+      - rabbitmq
 volumes: 
    pgdata:
    esdata:
