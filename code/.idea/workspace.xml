@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="438bf82a-1ffc-4beb-9db4-70b78f249ab0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../var.env" beforeDir="false" afterPath="$PROJECT_DIR$/../var.env" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +16,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -37,6 +36,11 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\insurance_django_project\code\insurance_app" />
+    </key>
   </component>
   <component name="RunManager" selected="Django Server.code">
     <configuration name="code" type="Python.DjangoServer" factoryName="Django server">
@@ -102,7 +106,10 @@
       <workItem from="1645177865249" duration="7618000" />
       <workItem from="1645299238956" duration="3672000" />
       <workItem from="1645353839207" duration="6897000" />
-      <workItem from="1645607899111" duration="6170000" />
+      <workItem from="1645607899111" duration="6341000" />
+      <workItem from="1645714520272" duration="297000" />
+      <workItem from="1645800259112" duration="604000" />
+      <workItem from="1646211562551" duration="5544000" />
     </task>
     <servers />
   </component>

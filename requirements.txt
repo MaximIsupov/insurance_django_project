@@ -5,3 +5,5 @@ django-elasticsearch-dsl
 djangorestframework
 celery
 sendgrid
+djongo
+pymongo

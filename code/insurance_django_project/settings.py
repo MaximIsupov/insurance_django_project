@@ -96,8 +96,17 @@ DATABASES = {
         "PASSWORD": os.environ.get("POSTGRES_PASSWORD", "postgres"),
         "HOST": os.environ.get("POSTGRES_HOST", "db"),
         "PORT": os.environ.get("POSTGRES_PORT", "5432"),
+    },
+    'mongo': {
+        'NAME': os.environ.get("MONGO_DB_NAME", "mongo_db"),
+        'ENGINE': 'djongo',
+        'USER': os.environ.get("MONGO_DB_USERNAME", "root"),
+        'PASSWORD': os.environ.get("MONGO_DB_PASSWORD", "root"),
+        "PORT": os.environ.get("MONGO_DB_PORT", "27017"),
+        "HOST": os.environ.get("MONGO_DB_HOST", "mongo"),
     }
 }
+
 
 
 # Password validation

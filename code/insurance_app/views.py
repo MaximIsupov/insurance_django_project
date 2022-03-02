@@ -1,14 +1,18 @@
 import abc
+import os
 
+import pymongo
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.views import generic
+from django.views.generic import ListView, DetailView
 from .documents import ProductDocument
 from elasticsearch_dsl import Q
 from insurance_app.tasks import send_email_task
 from .models import Company, Category, Product, Order
+from pymongo import MongoClient
 
 
 class SignUpView(generic.CreateView):
@@ -178,3 +182,36 @@ def products_search(request):
                                            'values': current_values,
                                            'categories': categories,
                                            })
+
+
+class ProductsListView(ListView):
+    model = Product
+    template_name = 'product_list.html'
+
+
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = 'product_detail.html'
+
+    def get_context_data(self, *args, **kwargs):
+        client = MongoClient(os.environ.get("MONGO_DB_HOST", "mongo"),
+                             int(os.environ.get("MONGO_DB_PORT", 27017)))
+        db = client[os.environ.get("MONGO_DB_NAME", "mongo_db")]
+        collection = db['product_views']
+        context = super(ProductDetailView, self).get_context_data(**kwargs)
+        pk = self.kwargs.get('pk')
+        views = 0
+        if collection.find_one({'product_id': pk}):
+            product_views = collection.find_one({'product_id': pk})
+            print(product_views)
+            product_views['views_count'] += 1
+            print(product_views)
+            views = product_views['views_count']
+            collection.update_one({'product_id': pk},
+                                  {"$set": {'views_count': views}})
+        else:
+            product_views = {'product_id': pk,
+                             'views_count': 0}
+            collection.insert_one(product_views)
+        context['views'] = views
+        return context

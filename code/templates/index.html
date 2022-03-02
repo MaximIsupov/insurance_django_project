@@ -24,6 +24,6 @@
             <a href={% url 'edit_product' product.id %}><div class="button button_secondary">Редактировать</div></a>
         {% endif %}
     {% endfor %}
-        <a href="#"><div class="button">Все услуги компаний</div></a>
+        <a href={% url 'products' %}><div class="button">Все услуги компаний</div></a>
     </div>
 {% endblock %}

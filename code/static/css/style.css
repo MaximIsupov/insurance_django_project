@@ -69,6 +69,10 @@ a{
     text-decoration: none;
     color:white;
 }
+.page-block a{
+    color: #ff5733;
+    font-weight:bold;
+}
 .button{
     margin-top:30px;
     margin-bottom:30px;
