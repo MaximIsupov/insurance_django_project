@@ -6,7 +6,7 @@
     <div class="page-block">
     <h1>Компании, зарегистрированные вами:</h1>
     {% for company in companies %}
-        <p><snap class="bold company_title">{{ company.name }}</snap> <br> {{ company.description }}</p>
+        <p><snap class="bold company_title title_head">{{ company.name }}</snap> <br> {{ company.description }}</p>
         <div >Список услуг компании: </div> <br>
         <div class="product-description">
         {% for product in products %}

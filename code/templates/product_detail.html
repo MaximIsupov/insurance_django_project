@@ -7,11 +7,9 @@
             Процентная ставка: {{ product.percentage }}%<br>
             Категория: {{ product.category_id.name }} <br></p>
             Просмотров данной страницы: {{ views }}
-
         {% if not request.user.is_authenticated %}
             <a href={% url 'add_order' product.id %}><div class="button button_secondary">Откликнуться</div></a>
-        {% endif %}
-        {% if request.user.is_authenticated and request.user.id == company.user_id %}
+        {% elif request.user.is_authenticated and request.user.id == company.user_id %}
             <a href={% url 'edit_product' product.id %}><div class="button button_secondary">Редактировать</div></a>
         {% endif %}
     </div>

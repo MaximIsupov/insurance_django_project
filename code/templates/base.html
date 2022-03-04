@@ -16,11 +16,14 @@
                 <input type="text" name="search_keyword" placeholder="Введите что-то для поиска"/>
             </form>
         </div>
-    <div class="header-log_button header-item">
+    <div id="header-log_button" class="header-log_button header-item">
         {% csrf_token %}
         {% if request.user.is_authenticated %}
-            <p>Вы вошли как <a href="{% url 'user_page' %}" class="bold"> {{ request.user.username }} </a> </p>
-            <p><a href="{% url 'logout' %}">Выйти из аккаунта</a></p>
+            <p id="open_user_actions">Вы вошли как <a href="{% url 'user_page' %}" class="bold"> {{ request.user.username }} </a> </p>
+            <div id="user_actions">
+                <a href="{% url 'add_company' %}">Добавить компанию</a>
+                <p><a href="{% url 'logout' %}">Выйти из аккаунта</a></p>
+            </div>
         {% else %}
             <p><a href="{% url 'login' %}">Войти в свой аккаунт</a></p>
             <p><a href="{% url 'register' %}">Зарегистрироваться</a></p>
@@ -30,5 +33,16 @@
     <div class="page-content">
         {% block content %}{% endblock %}
     </div>
+<script>
+    open_user_actions_block = document.getElementById('open_user_actions');
+    user_actions_block = document.getElementById('user_actions');
+    log_button = document.getElementById('header-log_button');
+    open_user_actions_block.onmouseenter = (event) => {
+                user_actions_block.style.display = 'block';
+            }
+    log_button.onmouseleave = (event) => {
+                user_actions_block.style.display = 'none';
+            }
+</script>
 </body>
 </html>

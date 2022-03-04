@@ -145,9 +145,9 @@ def add_order(request, product_id):
 
 def products_search(request):
     search_keyword = request.GET['search_keyword']
-    category_name = request.GET.get('category_name', '')
+    category_name = request.GET.get('category_name', 'not_selected')
     max_percentage = request.GET.get('percentage', 100)
-    period_value = request.GET.get('period', '0')
+    period_value = request.GET.get('period', 'not_selected')
     current_values = {'keyword': search_keyword,
                       'percentage': max_percentage,
                       'period': period_value}
@@ -171,11 +171,12 @@ def products_search(request):
                      period=period_value)
     s = ProductDocument.search()
     s = s.filter(query_name)
-    if category_name != '':
+    if category_name and category_name != 'not_selected':
         s = s.filter(query_category)
         current_values['category'] = category_name
     s = s.filter(query_percentage)
-    if period_value != '0':
+    print(period_value)
+    if period_value and period_value != 'not_selected':
         s = s.filter(query_period)
     categories = Category.objects.all()
     return render(request, 'search.html', {'qs': s,

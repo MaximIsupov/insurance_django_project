@@ -7,6 +7,7 @@
     <form method="get" action={% url 'products_search' %}>
         <label for="category_input">Выберите категорию продукта:</label><br>
         <select name="category_name" id="category_input">
+        <option value="not_selected">Не выбрано</option>
         {% for category in categories %}
             <option {% if values.category == category.name %}
                         selected="selected"
@@ -21,12 +22,13 @@
         <input type="range" id="range" name='percentage' min="0" max="100" step="1" value='{{ values.percentage }}'/><br>
         <label for="filter_period">Выберите временной период действия услуги:</label><br>
         <select name="period" id="filter_period">
+            <option value="not_selected">Не выбрано</option>
             <option {% if values.period == '0.5' %}selected="selected"{% endif %} value="0.5">6 месяцев</option>
             <option {% if values.period == '1' %}selected="selected"{% endif %} value="1">1 год</option>
             <option {% if values.period == '3' %}selected="selected"{% endif %} value="3">3 года</option>
             <option {% if values.period == '5' %}selected="selected"{% endif %} value="5">5 лет</option>
         </select>
-        <button class="button button_secondary">Поиск</button>
+        <button class="button button_secondary">Применить</button>
     </form>
     </div>
     </div>
