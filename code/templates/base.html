@@ -21,8 +21,9 @@
         {% if request.user.is_authenticated %}
             <p id="open_user_actions">Вы вошли как <a href="{% url 'user_page' %}" class="bold"> {{ request.user.username }} </a> </p>
             <div id="user_actions">
-                <a href="{% url 'add_company' %}">Добавить компанию</a>
-                <p><a href="{% url 'logout' %}">Выйти из аккаунта</a></p>
+                <p class="user_actions-item"><a href="{% url 'user_page' %}" >Открыть мой профиль </a></p>
+                <p class="user_actions-item"><a href="{% url 'add_company' %}">Добавить компанию</a></p>
+                <p class="user_actions-item"><a href="{% url 'logout' %}">Выйти из аккаунта</a></p>
             </div>
         {% else %}
             <p><a href="{% url 'login' %}">Войти в свой аккаунт</a></p>

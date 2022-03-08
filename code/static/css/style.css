@@ -115,11 +115,14 @@ button.button{
 }
 #user_actions{
     font-size: 20px;
-    margin-top:100px;
+    margin-top:110px;
     margin-left:90px;
     display: none;
     position: absolute;
 }
 li{
     margin-bottom:20px;
+}
+.user_actions-item{
+    text-align: left !important;
 }

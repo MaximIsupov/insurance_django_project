@@ -1,13 +1,10 @@
-import abc
 import os
-
-import pymongo
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views import generic
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from .documents import ProductDocument
 from elasticsearch_dsl import Q
 from insurance_app.tasks import send_email_task
@@ -216,3 +213,12 @@ class ProductDetailView(DetailView):
             collection.insert_one(product_views)
         context['views'] = views
         return context
+
+
+class AddCategory(CreateView):
+    model = Category
+    fields = ['name']
+    template_name = 'category_form.html'
+
+    def get_success_url(self):
+        return self.request.GET.get('next', reverse('index'))

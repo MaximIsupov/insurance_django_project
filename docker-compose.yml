@@ -24,13 +24,6 @@ services:
       - mongodata:/data/db
     ports:
       - 27017:27017
-  migration:
-    build: .
-    command: python manage.py migrate 
-    volumes:
-      - ./code:/code
-    depends_on:
-      - db
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
@@ -41,11 +34,9 @@ services:
     env_file:
       - var.env
     depends_on:
-      - migration
       - db
       - es
       - rabbitmq
-      - redis
   rabbitmq:
     image: rabbitmq
     container_name: rabbitmq

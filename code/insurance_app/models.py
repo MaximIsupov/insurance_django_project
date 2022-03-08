@@ -9,7 +9,8 @@ class Company(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100,
+                            verbose_name='Наименование категории')
 
 
 class Product(models.Model):

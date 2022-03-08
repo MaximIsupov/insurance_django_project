@@ -17,6 +17,7 @@
                     value={{ category.id }}>{{ category.name }}</option>
         {% endfor %}
         </select>
+        <br><a href={% url 'add_category' %}?next={{ request.path }}>Добавить новую категорию</a>
              <br><label for="percentage">Укажите процентную ставку(в процентах)</label><br>
         <input type="tel" id="percentage" name="percentage" value="{{ product.percentage }}"><br>
         <label for="period">Укажите период страхования</label><br>
