@@ -1,4 +1,7 @@
-Инструкция для запуска: docker-compose up docker-compose run --rm web python manage.py migrate(вынес из контейнера) docker-compose run --rm web python manage.py search_index --rebuild
+Инструкция для запуска:
+docker-compose up
+docker-compose run --rm web python manage.py migrate(вынес из контейнера)
+docker-compose run --rm web python manage.py search_index --rebuild
 
 добавлять отдельный контейнер на команду применить миграции - это не правильно Нужно либо вручную ее выполнять, либо в bash скрипт закладывать и подключать его в web контейнеру
 -Исправил
