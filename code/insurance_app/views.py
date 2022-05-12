@@ -21,11 +21,7 @@ class SignUpView(generic.CreateView):
 
 def add_company(request):
     if request.method == 'GET':
-        companies = Company.objects.all()[:5]
-        products = Product.objects.all()[:5]
-        context = {'companies': companies,
-                   'products': products}
-        return render(request, 'add_company.html', context)
+        return render(request, 'add_company.html', {})
     else:
         company_name = request.POST['company_name']
         company_description = request.POST['company_description']
@@ -34,7 +30,11 @@ def add_company(request):
                           name=company_name,
                           description=company_description)
         company.save()
-        return render(request, 'index.html', {})
+        companies = Company.objects.all()[:6]
+        products = Product.objects.all()[:6]
+        context = {'companies': companies,
+                   'products': products}
+        return render(request, 'index.html', context)
 
 
 def add_product(request, company_id):
@@ -93,8 +93,8 @@ def user_page(request):
 
 
 def index(request):
-    companies = Company.objects.all()[:5]
-    products = Product.objects.all()[:5]
+    companies = Company.objects.all()[:6]
+    products = Product.objects.all()[:6]
     context = {'companies': companies,
                'products': products}
     return render(request, 'index.html', context)
@@ -102,7 +102,6 @@ def index(request):
 
 def companies_page(request):
     companies = Company.objects.all()
-
     return render(request, 'companies.html', {'companies': companies})
 
 
@@ -130,13 +129,21 @@ def add_order(request, product_id):
                       customer_phone=int(customer_phone),
                       product_id=product)
         order.save()
-        companies = Company.objects.all()[:5]
-        products = Product.objects.all()[:5]
+        companies = Company.objects.all()[:6]
+        products = Product.objects.all()[:6]
         context = {'companies': companies,
                    'products': products, }
         user_id = product.company_id.user_id
         to_email = User.objects.get(id=user_id).email
-        send_email_task(order, to_email)
+        order_data = {
+            'customer_mail': customer_mail,
+            'customer_first_name': customer_first_name,
+            'customer_middle_name': customer_middle_name,
+            'customer_last_name': customer_last_name,
+            'customer_phone': customer_phone,
+            'product_name': product.name
+        }
+        send_email_task.delay(order_data, to_email)
         return render(request, 'index.html', context)
 
 
@@ -172,7 +179,6 @@ def products_search(request):
         s = s.filter(query_category)
         current_values['category'] = category_name
     s = s.filter(query_percentage)
-    print(period_value)
     if period_value and period_value != 'not_selected':
         s = s.filter(query_period)
     categories = Category.objects.all()

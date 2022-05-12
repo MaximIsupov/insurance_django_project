@@ -3,13 +3,14 @@
 {% block content %}
     <div class="page-block">
     <h1>{{ object.name }}</h1>
+    Компания: <a href="{% url 'company_page' product.company_id.id %}">{{ product.company_id.name }}</a><br>
             Период действия услуги: {{ product.period }} г.<br>
             Процентная ставка: {{ product.percentage }}%<br>
             Категория: {{ product.category_id.name }} <br></p>
             Просмотров данной страницы: {{ views }}
         {% if not request.user.is_authenticated %}
             <a href={% url 'add_order' product.id %}><div class="button button_secondary">Откликнуться</div></a>
-        {% elif request.user.is_authenticated and request.user.id == company.user_id %}
+        {% elif request.user.id == product.company_id.user_id %}
             <a href={% url 'edit_product' product.id %}><div class="button button_secondary">Редактировать</div></a>
         {% endif %}
     </div>

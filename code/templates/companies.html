@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 
+{% block title %}Список компаний{% endblock %}
+
 {% block content %}
     <div class="page-block">
  <h1>Список компаний, зарегистрированных в нашей системе:</h1>
     {% for company in companies %}
         <p><a href="{% url 'company_page' company.id %}" class="bold company_title">{{ company.name }}</a><br>{{ company.description }}</p>
+        <a href="{% url 'company_page' company.id %}"><div class="button button_secondary">Услуги компании</div></a>
     {% endfor %}
     </div>
 {% endblock %}

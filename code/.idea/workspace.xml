@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="438bf82a-1ffc-4beb-9db4-70b78f249ab0" name="Default Changelist" comment="" />
+    <list default="true" id="438bf82a-1ffc-4beb-9db4-70b78f249ab0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../var.env" beforeDir="false" afterPath="$PROJECT_DIR$/../var.env" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,6 +50,7 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="insurance_django_project.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
@@ -112,7 +117,25 @@
       <workItem from="1646678384247" duration="1789000" />
       <workItem from="1646682909661" duration="128000" />
       <workItem from="1646738687890" duration="476000" />
-      <workItem from="1646764283686" duration="5326000" />
+      <workItem from="1646764283686" duration="5920000" />
+      <workItem from="1646919104823" duration="440000" />
+      <workItem from="1646930014551" duration="278000" />
+      <workItem from="1647188406490" duration="4321000" />
+      <workItem from="1647796801274" duration="669000" />
+      <workItem from="1648198798874" duration="5873000" />
+      <workItem from="1648288197708" duration="660000" />
+      <workItem from="1648305994432" duration="6000000" />
+      <workItem from="1648316119503" duration="6324000" />
+      <workItem from="1648387583534" duration="2491000" />
+      <workItem from="1648460199385" duration="1365000" />
+      <workItem from="1648474104817" duration="3437000" />
+      <workItem from="1649680525617" duration="112000" />
+      <workItem from="1649681849733" duration="599000" />
+      <workItem from="1649701960603" duration="30000" />
+      <workItem from="1649702136082" duration="7000" />
+      <workItem from="1649758987237" duration="11000" />
+      <workItem from="1650219963401" duration="601000" />
+      <workItem from="1650634819611" duration="24000" />
     </task>
     <servers />
   </component>
@@ -120,6 +143,22 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
+    <state width="1877" height="286" key="GridCell.Tab.0.bottom" timestamp="1648204843653">
+      <screen x="0" y="0" width="1920" height="1054" />
+    </state>
+    <state width="1877" height="286" key="GridCell.Tab.0.bottom/0.0.1920.1054@0.0.1920.1054" timestamp="1648204843653" />
+    <state width="1877" height="286" key="GridCell.Tab.0.center" timestamp="1648204843653">
+      <screen x="0" y="0" width="1920" height="1054" />
+    </state>
+    <state width="1877" height="286" key="GridCell.Tab.0.center/0.0.1920.1054@0.0.1920.1054" timestamp="1648204843653" />
+    <state width="1877" height="286" key="GridCell.Tab.0.left" timestamp="1648204843653">
+      <screen x="0" y="0" width="1920" height="1054" />
+    </state>
+    <state width="1877" height="286" key="GridCell.Tab.0.left/0.0.1920.1054@0.0.1920.1054" timestamp="1648204843653" />
+    <state width="1877" height="286" key="GridCell.Tab.0.right" timestamp="1648204843653">
+      <screen x="0" y="0" width="1920" height="1054" />
+    </state>
+    <state width="1877" height="286" key="GridCell.Tab.0.right/0.0.1920.1054@0.0.1920.1054" timestamp="1648204843653" />
     <state x="623" y="228" width="672" height="678" key="search.everywhere.popup" timestamp="1645356241216">
       <screen x="0" y="0" width="1920" height="1054" />
     </state>

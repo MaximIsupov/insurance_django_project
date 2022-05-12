@@ -33,6 +33,7 @@
     </header>
     <div class="page-content">
         {% block content %}{% endblock %}
+    <a class="back_to_top" title="Наверх">Наверх</a>
     </div>
 <script>
     open_user_actions_block = document.getElementById('open_user_actions');
@@ -44,6 +45,32 @@
     log_button.onmouseleave = (event) => {
                 user_actions_block.style.display = 'none';
             }
+    (function() {
+      'use strict';
+
+      function trackScroll() {
+        let scrolled = window.pageYOffset;
+        let coords = document.documentElement.clientHeight;
+
+        if (scrolled > coords) {
+          goTopBtn.classList.add('back_to_top-show');
+        }
+        if (scrolled < coords) {
+          goTopBtn.classList.remove('back_to_top-show');
+        }
+      }
+
+      function backToTop() {
+        if (window.pageYOffset > 0) {
+          window.scrollBy(0, -80);
+          setTimeout(backToTop, 0);
+        }
+      }
+
+      let goTopBtn = document.querySelector('.back_to_top');
+      window.addEventListener('scroll', trackScroll);
+      goTopBtn.addEventListener('click', backToTop);
+    })();
 </script>
 </body>
 </html>

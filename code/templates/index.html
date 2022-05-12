@@ -1,29 +1,58 @@
 {% extends "base.html" %}
 
+{% block title %}Главная страница{% endblock %}
+
 {% block content %}
     <div class="page-block">
- <h1>Последние компании, зарегистрированные в нашей системе:</h1>
+    <div class="page-title block-row">
+        <div class="page-title_description block-col text">
+            <h1>Застрахуй братуху</h1>
+            <p class="description-content"> Мы - онлайн-агрегатор предложений от страховых компаний России. Платформа помогает быстро сравнить цены и выгодно оформить полисы ОСАГО, страховку для спортсменов или от укусов клещей, заказать услуги телемедицины, а также выбрать страховые полисы от несчастного случая, от COVID-19, застраховать квартиру или путешествие.</p>
+        </div>
+        <div class="page-title_img block-col">
+            {% load static %}
+            <img src="{% static '/imgs/main_img.png' %}">
+        </div>
+    </div>
+    <div class="block-row img">
+        <div class="block-col">
+        <img src="{% static '/imgs/company.png' %}">
+    </div>
+    <div class="block-col text">
+        <h1>Последние компании, зарегистрированные в нашей системе:</h1>
     {% for company in companies %}
         <p><a href="{% url 'company_page' company.id %}" class="bold company_title">{{ company.name }}</a><br>{{ company.description }}</p>
     {% endfor %}
         <a href={% url 'companies_page' %}><div class="button">Все компании</div></a>
     </div>
-    <hr>
+    </div>
+    </div>
     <div class="page-block">
+     <div class="block-row">
+     <div class="block-col text">
     <h1>Последние услуги, зарегистрированные компаниями</h1>
+     <div class="products">
     {% for product in products %}
+        <div class="product-card">
         <p><a href="{% url 'company_page' product.company_id.id %}" class="bold company_title">{{ product.company_id.name }}</a><br>
             <snap class="product_title">{{ product.name }}</snap> <br>
             Период действия услуги: {{ product.period }} г.<br>
             Процентная ставка: {{ product.percentage }}%<br>
         Категория: {{ product.category_id.name }} <br></p>
         {% if not request.user.is_authenticated %}
-            <a href={% url 'add_order' product.id %}><div class="button button_secondary">Откликнуться</div></a>
+            <a href={% url 'product' product.id %}><div class="button button_secondary">Подробнее</div></a>
         {% endif %}
         {% if request.user.is_authenticated and request.user.id == company.user_id %}
             <a href={% url 'edit_product' product.id %}><div class="button button_secondary">Редактировать</div></a>
         {% endif %}
+        </div>
     {% endfor %}
+     </div>
         <a href={% url 'products' %}><div class="button">Все услуги компаний</div></a>
+     </div>
+        <div class="block-col img">
+        <img src="{% static '/imgs/offers.png' %}">
+    </div>
+     </div>
     </div>
 {% endblock %}

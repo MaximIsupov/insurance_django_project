@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'insurance_app.apps.InsuranceAppConfig',
     'django_elasticsearch_dsl',
     'rest_framework',
-    'sendgrid',
 ]
 
 ELASTICSEARCH_DSL = {
@@ -51,7 +50,7 @@ ELASTICSEARCH_DSL = {
 
 RABBITMQ_DEFAULT_USER = os.environ.get('RABBITMQ_DEFAULT_USER', 'admin')
 RABBITMQ_DEFAULT_PASS = os.environ.get('RABBITMQ_DEFAULT_PASS', 'admin')
-CELERY_BROKER_URL = f'pyamqp://{RABBITMQ_DEFAULT_USER}:{RABBITMQ_DEFAULT_PASS}@rabbitmq:5672/'
+CELERY_BROKER_URL = f'amqp://{RABBITMQ_DEFAULT_USER}:{RABBITMQ_DEFAULT_PASS}@rabbitmq:5672'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -163,9 +162,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
 
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'MyFirstApiKey' # this is exactly the value 'apikey'
-EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST_USER = 'postmaster@sandbox2db3da92e61945a69c986c41973a704d.mailgun.org' # this is exactly the value 'apikey'
+EMAIL_HOST_PASSWORD = 'ba90c1f11af9e7eab25dfaea585de9a4-1b237f8b-31cae994'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 

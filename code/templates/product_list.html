@@ -6,10 +6,12 @@
   {% if product_list %}
   <ul>
     {% for product in product_list %}
-      <li>
         <a class="company_title" href="{% url 'product' product.id %}">{{ product.name }}</a><br>
-        <a href="{% url 'company_page' product.company_id.id %}">{{ product.company_id.name }}</a>
-      </li>
+        Компания: <a href="{% url 'company_page' product.company_id.id %}">{{ product.company_id.name }}</a><br>
+                    Период действия услуги: {{ product.period }} г.<br>
+                    Процентная ставка: {{ product.percentage }}%<br>
+                    Категория: {{ product.category_id.name }} <br>
+        <a href="{% url 'product' product.id %}" class="button button_secondary">Подробнее</a>
     {% endfor %}
   </ul>
   {% else %}
